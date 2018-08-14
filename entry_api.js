@@ -1,10 +1,11 @@
 const _ = require('lodash')
 const request = require('request')
 const EntryApi = function(attributes, auth_api){
-  // TODO: check environment variable
-  this.endpoint   = "http://localhost:3000/entries"
+  this.auth_api = auth_api
+  var api_url = process.env.API_URL
+  this.endpoint   =  `${api_url}/entries`
+
   this.attributes = attributes
-  this.auth_api   = auth_api
 }
 
 EntryApi.prototype.send = function(){

@@ -1,13 +1,15 @@
 const _ = require('lodash')
 const request = require('request')
 const AuthApi = function(attributes){
+  var api_url = process.env.API_URL
+  this.endpoint = `${api_url}/auth`
   this.attributes = attributes
   this.send()
 }
 
 AuthApi.prototype.send = function(){
   request({
-    url:  "http://localhost:3000/auth",
+    url:  this.endpoint,
     method: "POST",
     json: this.attributes
   },this.handleAuthResponse.bind(this) )
